@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+  <xs:element name="PICTURE">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="CARDS"/>
+        <xs:element ref="CATEGORIES"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CARDS">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" ref="ITEM"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ITEM">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="TITLE"/>
+        <xs:element ref="AUTHOR"/>
+        <xs:element ref="PUBLISHER"/>
+        <xs:element ref="PUB-DATE"/>
+        <xs:element ref="LANGUAGE"/>
+        <xs:element ref="PRICE"/>
+        <xs:element ref="QUANTITY"/>
+        <xs:element ref="ISBN"/>
+        <xs:element ref="PAGES"/>
+        <xs:element ref="DIMENSIONS"/>
+        <xs:element ref="WEIGHT"/>
+      </xs:sequence>
+      <xs:attribute name="CAT" use="required" type="xs:NCName"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="TITLE" type="xs:string"/>
+  <xs:element name="AUTHOR" type="xs:string"/>
+  <xs:element name="PUBLISHER" type="xs:string"/>
+  <xs:element name="PUB-DATE" type="xs:date"/>
+  <xs:element name="LANGUAGE" type="xs:NCName"/>
+  <xs:element name="PRICE" type="xs:decimal"/>
+  <xs:element name="QUANTITY" type="xs:integer"/>
+  <xs:element name="ISBN" type="xs:integer"/>
+  <xs:element name="PAGES" type="xs:integer"/>
+  <xs:element name="DIMENSIONS">
+    <xs:complexType mixed="true">
+      <xs:attribute name="UNIT" use="required" type="xs:NCName"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="WEIGHT">
+    <xs:complexType>
+      <xs:simpleContent>
+        <xs:extension base="xs:decimal">
+          <xs:attribute name="UNIT" use="required" type="xs:NCName"/>
+        </xs:extension>
+      </xs:simpleContent>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CATEGORIES">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" ref="CATEGORY"/>
+      </xs:sequence>
+      <xs:attribute name="DESC" use="required"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CATEGORY">
+    <xs:complexType>
+      <xs:attribute name="CODE" use="required" type="xs:NCName"/>
+      <xs:attribute name="DESC" use="required"/>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
